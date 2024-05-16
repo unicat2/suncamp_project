@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+    <style>
+        .title{
+            position: relative;
+            left: 40%;
+            margin: 30px 0;
+            font-size: 14px;
+        }
+        .upload-container{
+            position: relative;
+            left: 40%;
+        }
+        .tip{
+            position: relative;
+            left: 40%;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <p class="title"><b>盖章推荐表:</b></p>
+    <div class="layui-upload-drag upload-container" id="test10">
+        <i class="layui-icon"></i>
+        <p>点击上传，或将文件拖拽到此处</p>
+        <div class="layui-hide" id="uploadDemoView">
+            <hr>
+            <img src="" alt="上传成功后渲染" style="max-width: 196px">
+        </div>
+    </div>
+
+<!--
+    <div>
+        <el-upload
+                class="upload-demo"
+                drag
+                action="https://jsonplaceholder.typicode.com/posts/"
+                multiple>
+            <i class="el-icon-upload"></i>
+            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+            <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+        </el-upload>
+    <div>
+-->
+
+
+<!--
+    <div>
+        <p>选择多个文件上传</p>
+        <form method="POST" enctype="multipart/form-data" action="/uploadBatch">
+            <p>文件1：<input type="file" name="file"/></p>
+            <p>文件2：<input type="file" name="file"/></p>
+            <p><input type="submit" value="上传"/></p>
+        </form>
+    </div>-->
+
+    <div class="tip">
+        <div class="hh1">
+        <p><b>温馨提示</b></p></br>
+        <p>1.上传文件支持 .jpg .jpeg .png或 .pdf格式</p></br>
+        <p>2.用户最多可上传3个文件</p></br>
+        <p style="color: #ff0000">3.盖章推荐表每一页请务必由单位盖章后上传，且印章完整清晰</p></br>
+        <p style="color: #ff0000">4.上传文件名字中不要包含空格及其他特殊符号</p></br>
+    </div>
+    </div>
+
+
+<script src="/layuiadmin/layui/layui.js" charset="utf-8"></script>
+<script src="/js/select.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    function submitInfo() {
+        console.log("iframe-id方法被调用");
+        document.getElementById("submitButton").click();
+    }
+
+    layui.use(['upload', 'element', 'layer'], function () {
+        var $ = layui.jquery
+            , upload = layui.upload
+            , element = layui.element
+            , layer = layui.layer;
+
+        var localTest = layui.sessionData('test');
+        var phoneNumber = localTest.phoneNumber;
+        var formId = localTest.formId;
+
+        // 拖拽上传
+        upload.render({
+            elem: '#test10',
+            url: '/file/upload', //改成您自己的上传接口
+            // url: 'https://httpbin.org/post', //改成您自己的上传接口
+            method: 'post',  //可选项。HTTP类型，默认post
+            data: {
+                "id": formId,
+                "phoneNumber":phoneNumber
+            },
+            accept:'file',
+            done: function (res) {
+                // layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.files.file);
+                layer.msg('上传成功', {time: 1000}, function () {
+                });
+                console.log(res)
+            }
+        })
+    });
+
+</script>
+</body>
+</html>

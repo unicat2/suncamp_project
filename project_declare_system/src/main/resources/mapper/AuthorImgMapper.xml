@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatisplus.mapper.AuthorImgMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.mybatisplus.model.domain.AuthorImg">
+        <id column="phone_number" property="phoneNumber" />
+        <result column="img_path" property="imgPath" />
+    </resultMap>
+
+    <update id="updateAvatarByNumber">
+        UPDATE
+            authorimg
+        SET
+            img_path = #{avatar},
+
+        WHERE
+            phone_number = #{uid}
+    </update>
+
+</mapper>

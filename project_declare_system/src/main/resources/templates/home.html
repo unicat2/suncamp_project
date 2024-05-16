@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" href="/css/bootstrap.css" />
+	<link rel="stylesheet" href="/css/daohang.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<link rel="stylesheet" href="/css/style2.css"/>
+	<script type="text/javascript" src="/js/jquery-1.11.3.js" ></script>
+	<!--		<script type="text/javascript" src="/js/bootstrap.js" ></script>-->
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<script type="text/javascript" src="/js/hp.js" ></script>
+	<link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Open+Sans'>
+
+	<title></title>
+	<style type="text/css">
+		table {
+			border-collapse: collapse;
+		}
+		th, td {
+			padding: 10px 10px;
+		}
+	</style>
+	<style>
+		body {
+			overflow: hidden;
+			color: #000;
+			font-size: 14px;
+			font-family:Microsoft YaHei,SimHei;
+			background-color: #eee;
+			margin:0;
+		}
+		img {
+			border: none;
+		}
+		.bxcolumn {
+			width: 1000px;
+			height: 42px;
+			margin: 20px 0px;
+			float: left;
+		}
+		.part2{
+
+
+		}
+		.ship{
+
+		}
+		.ship::before{
+			content: "";
+			background:transparent url("/img/bg2.png") no-repeat 160px 100px;
+			background-size: 80%;
+			animation:jelly_scale_1 5s linear;
+			display: inline-block;
+			position: fixed;
+			width: 100vw;
+			height: 100vh;
+			top: 0;
+			left: 0;
+
+		}
+		.main { position: relative; }
+
+
+		/*侧栏*/
+		.side_left {
+			position: fixed;
+			top: 100px;
+			left: 85%;
+
+
+			z-index: 100;
+			/*margin-left: ;*/
+			margin-top: 200px;
+
+			width: 216px;
+			height: 477px;
+			color: #de2225;
+			font-size: 12px;
+			background: url(//t1.huanqiucdn.cn/ff7ea416678b8601266f015dc6623a8d.png) no-repeat;
+			currtop : 0;
+		}
+		.side_left .item_1 {
+			height: 185px;
+			line-height: 16px;
+			padding: 0 15px 0 5px;
+			margin-bottom: 10px;
+		}
+		.side_left .item_1 p a{
+			height: auto;
+			margin: 0;
+		}
+		.side_left .tle {
+			margin-top: 90px;
+			font-size: 18px;
+			margin-bottom: 20px;
+		}
+		.side_left .tle a {
+			height: auto;
+		}
+		.side_left p {
+			padding: 0 10px 0 10px;
+		}
+		.side_left a {
+			color: #de2225;
+			text-decoration: none;
+			display: block;
+			height: 42px;
+			margin-bottom: 5px;
+		}
+		.hq_page_sm .side_left {
+			left: 10px;
+			margin-left: 0;
+		}
+		.side_left_text {
+			margin: 2px 35px 2px 0px;
+			padding: 0;
+			height: 45px;
+			line-height: 45px;
+			font-size: 15px;
+			color: #fff;
+			overflow: hidden;
+			width:200px;
+		}
+
+		.bxtext {
+			width: 1000px;
+			margin: 0px 0px 20px;
+			font-size: 16px;
+			color: #3e3e3e;
+			line-height: 32px;
+			text-align: left;
+		}
+		.desTxt p {
+			margin-top: 18px;
+		}
+
+
+		.coLink h2 {
+			display: block;
+			height: 100%;
+			float:left;
+			font-size: 16px;
+			color: #333;
+			font-weight: bold;
+			margin:0;
+		}
+
+		.coLinkCon a {
+			display:inline-block;
+			font-family:Microsoft YaHei,SimHei;
+			font-size:14px;
+			color:#6c6c6c;
+			margin:0 10px;
+			text-decoration: none;
+		}
+		.coLinkCon a:hover {
+			color:#d00005;
+		}
+
+		.coLinkwb span {
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		.coLinkwx img {
+			margin-top: -60px;
+		}
+
+
+		.footer a {
+			color: #aeaeae;
+			margin: 0 3px;
+		}
+		.footer a:hover {
+			text-decoration: underline;
+		}
+
+		.result { width:982px; margin:70px auto 0 auto;}
+		.txt-title { height:34px; background:url(http://himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/txt-title.png) no-repeat center center;}
+		.result-main { width:847px; background:url(http://himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/txt-bg.jpg) }
+		.result-main table { border-collapse: collapse;border:solid 1px;table-layout:fixed;}
+		.result-main table td { border:solid 5px; height:52px; line-height:52px; background:#fff; text-align:center; font-size:16px; color:#af3c3f; padding: 5px}
+		.result-main table td strong { font-size:20px; color:#b3363a;}
+		.result-main table td img { display:block; margin:0 auto; width:36px; height:40px; overflow:hidden;}
+		.result-main table tr td:first-child{display: none;}</style>
+</head>
+
+<body background="/img/bottom.jpg" style=" background-repeat:no-repeat ;background-size:100% 100%; background-attachment:fixed;">
+
+
+<div class="part2">
+	<div class="ship" >
+		<video class="dsn" poster="/img/bg2.png" autoplay loop muted  style="width: 100%; height: 100%; object-fit: cover;">
+			<source src="/img/bg1.mp4">
+		</video>
+	</div>
+</div>
+<div style="margin-top: 100px;">
+	<center><img src="/img/wangqi.png"></center>
+</div>
+
+<div id="box" class="side_left" >
+
+	<!-- 五个一百活动介绍 -->
+	<div class="item_1">
+		<h2 class="tle"><a href="http://news.youth.cn/zt/wlznl2016/" target="_blank">“五个一百”活动介绍</a></h2>
+		<p>“网聚正能量，奋进新时代”，</br>第五届“五个一百”网络正能量</br>精品评选活动包括“百名网络正</br>能量榜样”“百篇网络正能量文</br>字作品”“百幅网络正能量图</br>片”“百部网络正能量动漫音视</br>频作品”“百项网络正能量专题</br>活动”五个项目。</p>
+	</div>
+	<!-- 五个一百入口 -->
+
+	<a href="http://yunying.people.cn/GB/432310/434034/index.html" class="link_1" title="榜样评选结果" target="_blank">
+		<p class="side_left_text">榜样评选结果</p>
+	</a>
+
+	<a href="http://www.chinanews.com/tp/z/zhengnengliang2020/index.shtml" class="link_1" title="图片评选结果" target="_blank">
+		<p class="side_left_text">图片评选结果</p>
+	</a>
+
+	<a href="https://topics.gmw.cn/node_136013.htm" class="link_1" title="动漫音视频评选结果" target="_blank">
+		<p class="side_left_text">动漫音视频评选结果</p>
+	</a>
+
+	<a href="http://news.youth.cn/zt/2020zthd/" class="link_1" title="专题活动评选结果" target="_blank">
+		<p class="side_left_text">专题活动评选结果</p>
+	</a>
+
+
+</div>
+
+<!-- /end 左侧栏 -->
+
+<div class="main">
+
+	<center><div class="result" style="    margin: 2%;">
+		<div class="result-main">
+
+			<table>
+				<tbody><tr>
+					<td width="60"></td>
+					<td width="466"><strong>文字作品名称</strong></td>
+					<td width="226"><strong>作者</strong></td>
+					<td width="150"><strong>作品链接</strong></td>
+				</tr>
+
+				<tr>
+					<td><strong>1</strong></td>
+					<td>奋力开创新时代退役军人工作新局面——以习近平同志为核心的党中央关心退役军人工作纪实</td>
+					<td>周燕红</td>
+					<td><a href="http://www.xinhuanet.com/2019-07/25/c_1124799562.htm" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>2</strong></td>
+					<td>天宫奇遇记</td>
+					<td>王光力</td>
+					<td><a href="https://m.toutiaocdn.com/i6814003459470131719/?app=news_article&timestamp=1590143715&req_id=202005221835140101290400782532F60C&group_id=6814003459470131719" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>3</strong></td>
+					<td>【地评线】徽喜鹊漫评：读懂残疾人旅客专用票饱含的拥军情怀</td>
+					<td>孙昊</td>
+					<td><a href="http://comment.anhuinews.com/system/2020/04/21/008405724.shtml" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>4</strong></td>
+					<td>中青漫评｜战“疫”青年用青春谱写绚丽华章</td>
+					<td>曹大风</td>
+					<td><a href="https://t.m.youth.cn/transfer/index/url/pinglun.youth.cn/ttst/202003/t20200305_12225115.htm?from=singlemessage&isappinstalled=0" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>5</strong></td>
+					<td>“非洲版高铁”让“中国标准”闪闪发光</td>
+					<td>庄朴</td>
+					<td><a href="https://world.huanqiu.com/article/9CaKrnKk9zL" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>6</strong></td>
+					<td>电力添彩 “画”出创业梦</td>
+					<td>杨振宇</td>
+					<td><a href="https://mp.weixin.qq.com/s/g_KIrURW_G9bCgdH_75XPA" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>7</strong></td>
+					<td>“中国速度”为疫情防控添信心</td>
+					<td>何高波</td>
+					<td><a href="http://www.ce.cn/cysc/jtys/tielu/202002/09/t20200209_34239558.shtml" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>8</strong></td>
+					<td>疫情如镜，照出“逆行者”最美英姿</td>
+					<td>宋文强</td>
+					<td><a href="https://opinion.huanqiu.com/article/9CaKrnKpogN" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>9</strong></td>
+					<td>“逆行”火车司机：婚礼可以推迟 幸福不会延期</td>
+					<td>魏乐</td>
+					<td><a href="http://www.cnr.cn/sxpd/pp/yl/20200215/t20200215_524976047.shtml" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>10</strong></td>
+					<td>与中国“造岛神器”共同经历恐袭惊魂</td>
+					<td>周骥滢</td>
+					<td><a href="https://mp.weixin.qq.com/s/EsM5aAyoZq5wpJVBcZaILQ" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>11</strong></td>
+					<td>有一种爱，叫默默支持！被税务人写的《宅男日记》暖到了</td>
+					<td>雷分良</td>
+					<td><a href="https://mp.weixin.qq.com/s/OW8gyed7d5wiaLhF85LLLA" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>12</strong></td>
+					<td>湖南最后的慢火车①丨7272次：没有这趟车 我们会穷一辈子</td>
+					<td>徐士洁</td>
+					<td><a href="https://hn.rednet.cn/content/2019/06/18/5600462.html" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>13</strong></td>
+					<td>跨越80多年的守望相助！南京捐赠抗“疫”物资驰援拉贝后人</td>
+					<td>田梅、黄欢</td>
+					<td><a href="https://jnews.xhby.net/v3/waparticles/513ab015e96b458bbf9e81e277c4a717/hH8XVBjFgfqzLMa0/1" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>14</strong></td>
+					<td>我与祖国共成长：母亲这一辈子</td>
+					<td>柯尊超</td>
+					<td><a href="http://tougao.12371.cn/gaojian.php?tid=2688728" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>15</strong></td>
+					<td>筑牢生态安全屏障 守护祖国绿水青山</td>
+					<td>杨璐</td>
+					<td><a href="https://opinion.huanqiu.com/article/9CaKrnKnj76" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>16</strong></td>
+					<td>环球网评：从磨难中奋起，抗“疫”见证中国精神</td>
+					<td>李群</td>
+					<td><a href="https://opinion.huanqiu.com/article/9CaKrnKpB9M" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>17</strong></td>
+					<td>战疫取得成效，中国优势在哪？</td>
+					<td>毛莉 栾雨石</td>
+					<td><a href="http://opinion.haiwainet.cn/n/2020/0224/c353596-31726049.html" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>18</strong></td>
+					<td>疫情颠覆人生：上海第一位“逆行者”钟鸣的武汉75日</td>
+					<td>王潇</td>
+					<td><a href="https://www.shobserver.com/news/detail?id=240894" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>19</strong></td>
+					<td>这盛世如您所愿——重读烈士家书 聆听家国情怀</td>
+					<td>山西广播电视台卫星频道</td>
+					<td><a href="https://mp.weixin.qq.com/s/G2_OglfoWS7NPoOtjgmcmA" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>20</strong></td>
+					<td>“动”“静”之间，感受武汉的英雄气质丨卫星知识局</td>
+					<td>郭建伟</td>
+					<td><a href="https://mp.weixin.qq.com/s/Jrt1Jx63MYXq030zOhFQHg" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>21</strong></td>
+					<td>环球漫评|扶贫专列逆“疫”行，谱写发展新篇章！</td>
+					<td>崔伟</td>
+					<td><a href="https://opinion.huanqiu.com/article/3y0XvmTcO8Q" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>22</strong></td>
+					<td>春运深夜里的列车“大师”们</td>
+					<td>朱舒丽</td>
+					<td><a href="http://epaper.gmw.cn/gmrb/html/2020-01/17/nw.D110000gmrb_20200117_6-01.htm" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>23</strong></td>
+					<td>“新春运”让“回家过年”变得简单</td>
+					<td>张书增</td>
+					<td><a href="http://opinion.people.com.cn/n1/2020/0107/c1003-31537265.html" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>24</strong></td>
+					<td>防控+服务，逆行尖兵亮剑特殊战场</td>
+					<td>赵威</td>
+					<td><a href="https://m.youth.cn/qwtx/xxl/202003/t20200302_12220241.htm" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>25</strong></td>
+					<td>致敬！抗疫“逆行者”的爱情更美丽</td>
+					<td>师润润</td>
+					<td><a href="https://baijiahao.baidu.com/s?id=1658401102780663804&wfr=spider&for=pc" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>26</strong></td>
+					<td>环球漫评︱向疫情下的“平民英雄”致敬</td>
+					<td>向帅</td>
+					<td><a href="https://opinion.huanqiu.com/article/3xdCpml6xAf" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>27</strong></td>
+					<td>晓燕展翅 青春出彩 ——记兰州局集团公司兰州西车辆段轮轴装修工刘晓燕</td>
+					<td>贾长学</td>
+					<td><a href="http://www.peoplerail.com/rmtd2016/content/2019-04/29/content_74062.htm" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>28</strong></td>
+					<td>赤诚之心 奋斗之力</td>
+					<td>李丽霞</td>
+					<td><a href="https://epaper.gmw.cn/gmrb/html/2019-09/30/nw.D110000gmrb_20190930_5-05.htm" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>29</strong></td>
+					<td>阿拉山口口岸：为构建人类命运共同体“穿针引线”</td>
+					<td>佘小平</td>
+					<td><a href="http://opinion.cctv.com/2020/04/23/ARTIrrOiCwdOfUNmKg6rOltP200423.shtml" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>30</strong></td>
+					<td>对华为万炮齐轰，但狐狸尾巴露得太快！</td>
+					<td>俞晨江</td>
+					<td><a href="https://mp.weixin.qq.com/s/JlD8z5ALndOittZedo1hew" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>31</strong></td>
+					<td>独臂英雄</td>
+					<td>洪珊珊</td>
+					<td><a href="https://mp.weixin.qq.com/s?__biz=MzA3MjgwMjU0Nw==&mid=2649742735&idx=2&sn=72d03d68d8dee72fbb429c929d2d08cc&chksm=8703b413b0743d05a4b8b097d7bcbf739d545bc6b5fb6d2603f94bb0a9f96d8d9f7330a23896&token=1077669420&lang=zh_CN" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>32</strong></td>
+					<td>美国犹他州小学生唱歌为武汉加油：“你笑起来真好看”</td>
+					<td>张蔚然</td>
+					<td><a href="http://www.chinanews.com/gn/2020/02-25/9104515.shtml" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>33</strong></td>
+					<td>云南孟连：两任“第一书记”再聚首 共谱佤山扶贫春耕曲</td>
+					<td>普凤娇</td>
+					<td><a href="http://yn.people.com.cn/n2/2020/0312/c372456-33871586.html?from=singlemessage" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>34</strong></td>
+					<td>“战疫情书”是家国情怀响亮表达</td>
+					<td>邓卷卷</td>
+					<td><a href="http://say.cqnews.net/html/2020-03/18/content_50859868.html" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>35</strong></td>
+					<td>看！红色土地上的那抹忠诚——一支深山部队的“初心”坚守</td>
+					<td>孙正好、张歆</td>
+					<td><a href="https://xhpfmapi.zhongguowangshi.com/vh512/share/6591938?channel=weixin" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>36</strong></td>
+					<td>白衣作战袍 “疫”线淬使命 ——记区中医院呼吸内科医生周振宇</td>
+					<td>郑和顺</td>
+					<td><a href="https://h5.cqliving.com/info/detail/2402982.html?cid=2402982&from=timeline&isappinstalled=0" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>37</strong></td>
+					<td>“我们是一支不可战胜的力量！”——国庆70周年阅兵纪实</td>
+					<td>梅世雄</td>
+					<td><a href="http://m.xinhuanet.com/mil/2019-10/01/c_1210299421.htm" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>38</strong></td>
+					<td>抗疫斗争中党的对外工作故事（共四期）</td>
+					<td>中共中央对外联络部新闻办公室</td>
+					<td><a href="https://mp.weixin.qq.com/s/F5LHrsqXldKE-tkfL2GABw" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>39</strong></td>
+					<td>环球网评：中美抗疫合作应相向而行</td>
+					<td>郑贵初</td>
+					<td><a href="https://opinion.huanqiu.com/article/9CaKrnKqBx0" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>40</strong></td>
+					<td>中国电建资助的6名老挝留学生：“我们在武汉，一切安好”</td>
+					<td>刘向晨</td>
+					<td><a href="https://mp.weixin.qq.com/s/oNGvXkt7-sklb4dfwud-7Q" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>41</strong></td>
+					<td>要中国为美国买单? 荒谬！</td>
+					<td>梁生文</td>
+					<td><a href="http://news.cri.cn/20200323/7ee0ce35-c184-ce58-298c-bfc034a5aa64.html" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>42</strong></td>
+					<td>警察艾冬·一生只存光明</td>
+					<td>秦雯</td>
+					<td><a href="https://mp.weixin.qq.com/s/xM_UJW-Q2IUi4erwxH_BxA" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>43</strong></td>
+					<td>散文《一川烟雨》</td>
+					<td>海丹青</td>
+					<td><a href="https://article.xuexi.cn/articles/index.html?art_id=17039389477476614826&t=1558404943189&study_style_id=feeds_default&showmenu=false&pid=&ptype=-1&source=share&share_to=wx_single" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>44</strong></td>
+					<td>从“换肝人”到世界冠军，不认命就是这位刑警的命</td>
+					<td>李坚</td>
+					<td><a href="https://weibo.com/ttarticle/p/show?id=2309404411108659167491" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>45</strong></td>
+					<td>解码“-6.8%”背后的发展信心</td>
+					<td>李娅</td>
+					<td><a href="http://news.jstv.com/a/20200418/158719589565.shtml" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>46</strong></td>
+					<td>战“疫”，人民武警和您 在一起！</td>
+					<td>齐明宇</td>
+					<td><a href="https://mp.weixin.qq.com/s/A5zTgE5plZUQsha_XuyIjw" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>47</strong></td>
+					<td>在这里，有一群最可爱的人！——致密切接触者集中隔离观察点医务人员</td>
+					<td>王英</td>
+					<td><a href="https://mp.weixin.qq.com/s?__biz=MzI3MDM0MDYxNQ==&mid=2247490801&idx=1&sn=5c723f5697bca1883f768026aff803aa&chksm=ead3db99dda4528fc8ae743c24c55e119e4d844abe08ef0bdfc04c5b02fbada64e565ecbd4f2&token=195998519&lang=zh_CN" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>48</strong></td>
+					<td>边防战士十二时辰</td>
+					<td>刘云</td>
+					<td><a href="http://military.people.com.cn/n1/2019/0721/c1011-31246696.html" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>49</strong></td>
+					<td>领队机女飞，为你揭秘极限飞行背后的故事！</td>
+					<td>付震</td>
+					<td><a href="https://mp.weixin.qq.com/s/HOl_6efRuoez02_OLzFOHg" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>50</strong></td>
+					<td>唐诗中的长安城市图景</td>
+					<td>崔凯  孟欣</td>
+					<td><a href="http://www.jyb.cn/rmtzgjyb/202004/t20200417_317632.html" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>51</strong></td>
+					<td>大国脊梁 | 让癌细胞改邪归正，他才是真正的"药神"</td>
+					<td>老科学家学术成长资料采集工程</td>
+					<td><a href="https://mp.weixin.qq.com/s?__biz=MzUzMzQzMzU3OQ==&mid=2247485368&idx=1&sn=e67d2905d67998dea33c83ce7f5beb1b&chksm=faa55a3ccdd2d32a03fbca5ec568b27e7e6f979b814a17ae2dcb758dadd6859adfc478523695&token=157890128&lang=zh_CN" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>52</strong></td>
+					<td>民主改革60年   幸福路上再前行</td>
+					<td>陈梦梦</td>
+					<td><a href="http://www.xzxw.com/jysp/201903/t20190326_2564670.html" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>53</strong></td>
+					<td>百岁书记吕银芬守初心讲党课 五任“头雁”忆历程看成效</td>
+					<td>章炳军</td>
+					<td><a href="http://zjnews.zjol.com.cn/201907/t20190703_10498105.shtml" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>54</strong></td>
+					<td>抗洪一线 我们在</td>
+					<td>段伟</td>
+					<td><a href="http://tougao.12371.cn/gaojian.php?tid=2383859" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>55</strong></td>
+					<td>杨教授因何成了“杨高修”？从一只布袋、七年村路说起【附视频】</td>
+					<td>王仁维 彭德倩</td>
+					<td><a href="https://www.jfdaily.com/news/detail?id=150628" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>56</strong></td>
+					<td>《那山那人那事》系列报道：戴队长和他的“冯将军”等</td>
+					<td>张珍 王宇晨 杨艳</td>
+					<td><a href="https://mp.weixin.qq.com/s/CE-HU4k0HV516mMsfldVMg" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>57</strong></td>
+					<td>复工复产贵在精准、重在有序、要在扎实</td>
+					<td>刘斯桐</td>
+					<td><a href="http://www.ce.cn/cysc/jtys/tielu/202003/16/t20200316_34497488.shtml" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>58</strong></td>
+					<td>东航包机载中国专家飞赴意大利抗疫</td>
+					<td>叶克文、张云、刘铭莎</td>
+					<td><a href="https://www.facebook.com/mu4it/posts/2225614707743751" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>59</strong></td>
+					<td>助力“复工复产” 铁路跑出“加速度”</td>
+					<td>李亚喜</td>
+					<td><a href="http://opinion.newssc.org/m/system/20200404/001055372.html?from=singlemessage" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>60</strong></td>
+					<td>公司在催我！女朋友没带钥匙也催我！杭州小伙骑车逆行被拦后当场崩溃！网友：仿佛看到了自己</td>
+					<td>谢晓颖 蒋大伟</td>
+					<td><a href="https://mp.weixin.qq.com/s/srtXubOmQsOTf0PwF6AnRA" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>61</strong></td>
+					<td>这个交警叔叔火了！超百万人为他点赞</td>
+					<td>黄娜 时宇杰</td>
+					<td><a href="https://mp.weixin.qq.com/s/oGORO_EWaObZucC6kqNA9Q" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>62</strong></td>
+					<td>托举战鹰翱天际——记武警某部直升机支队机务一中队空勤机械师廖强</td>
+					<td>陶用</td>
+					<td><a href="http://xhpfmapi.zhongguowangshi.com/vh512/share/6164172?from=timeline" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>63</strong></td>
+					<td>后岱山村“蒲凉帽”书记王国洋：拉起三支队伍兴乡村 </td>
+					<td>俞伟波</td>
+					<td><a href="https://zj.zjol.com.cn/news/1295059.html" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>64</strong></td>
+					<td>戴好这三重“口罩”不给疫情防控工作添乱</td>
+					<td>程聪</td>
+					<td><a href="http://say.cqnews.net/html/2020-02/13/content_50812708.htm" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>65</strong></td>
+					<td>待到春暖花开时 等你回家抱抱我</td>
+					<td>武陇慧</td>
+					<td><a href="http://m.cpls.org.cn/wxrd/2020-03-30/165101.html?from=groupmessage&isappinstalled=0" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>66</strong></td>
+					<td>鉴古知今，从弱国外交到大国外交，见证中国崛起历程</td>
+					<td>张国斌</td>
+					<td><a href="http://news.cri.cn/20200430/3893c3a9-a262-4be4-6a0d-c1ea79d8cdc4.html" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>67</strong></td>
+					<td>回看初心西柏坡 难忘当年小推车</td>
+					<td>彭丽哲</td>
+					<td><a href="https://mp.weixin.qq.com/s/JM7bs-B4pT11uulZQo2DSA" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>68</strong></td>
+					<td>共同战“疫”党员干部锻造“硬骨头”</td>
+					<td>陈倩</td>
+					<td><a href="http://dangjian.people.com.cn/n1/2020/0131/c117092-31565817.html" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>69</strong></td>
+					<td>武汉方舱里有位“带头大哥”，每天带着一群人“抢”护士的活</td>
+					<td>陈坤</td>
+					<td><a href="https://mp.weixin.qq.com/s/ESypdtIfSYGEuvKNiHrh6w" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>70</strong></td>
+					<td>军礼的力量——从张富清到杜富国</td>
+					<td>孙伟帅</td>
+					<td><a href="https://mp.weixin.qq.com/s/bVA24iAu73wwPQFgKUhLtQ" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>71</strong></td>
+					<td>“初心”耀耀  党旗飘飘   同心抗“疫”不胜不休</td>
+					<td>熊林海</td>
+					<td><a href="https://guancha.gmw.cn/2020-02/12/content_33548884.htm" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>72</strong></td>
+					<td>这位鲤城母亲驰援武汉抗疫，给2岁女儿写来家书：樱花已开 春光已近</td>
+					<td>陈嘉斌</td>
+					<td><a href="https://mp.weixin.qq.com/s/yGBtSTQ2VRi9pNDNn0mZTg" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>73</strong></td>
+					<td>从新年贺词看习近平总书记一以贯之的初心使命</td>
+					<td>强德平</td>
+					<td><a href="http://opinion.gscn.com.cn/system/2020/01/06/012299570.shtml" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>74</strong></td>
+					<td>46秒！生死瞬间，他们冲向持枪歹徒……</td>
+					<td>徐琦</td>
+					<td><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTE1MDI0Mg==&mid=2655854384&idx=1&sn=d68c50b129e1cb06ed37f15d6ed743aa&chksm=bd0046fd8a77cfebf9a0ae8d4ec421c58d98eaa0c42e191b696d1df8a257aded17bdfe24b8bd&token=1762257462&lang=zh_CN" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>75</strong></td>
+					<td>来，看看全民战“疫” 画出的温暖瞬间</td>
+					<td>央广网</td>
+					<td><a href="http://news.cnr.cn/native/city/20200212/t20200212_524971659.shtml" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>76</strong></td>
+					<td>国庆阅兵唯一士官领队，退伍后为啥给人擦鞋？</td>
+					<td>周晓辉</td>
+					<td><a href="https://mp.weixin.qq.com/s/EiUxzLftu_ooq57F88ZHZw" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>77</strong></td>
+					<td>综述：观察多国海军活动 见证中国海军成长</td>
+					<td>李纯</td>
+					<td><a href="http://www.chinanews.com/mil/2019/04-26/8820906.shtml" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>78</strong></td>
+					<td>看懂国庆大阅兵！</td>
+					<td>陈小平</td>
+					<td><a href="https://mp.weixin.qq.com/s/s9KQrQFyISLNgcP6bSt5Pg" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>79</strong></td>
+					<td>两脚带泥不忘本，真情扶贫践初心</td>
+					<td>周丽芳</td>
+					<td><a href="http://news.jstv.com/a/20200413/1586764248154.shtml?from=timeline" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>80</strong></td>
+					<td>从两个诺贝尔奖看创新的意义与中医药的未来</td>
+					<td>杨驰</td>
+					<td><a href="https://mp.weixin.qq.com/s/hfM9yovbOe_4wJKwbjgwRg" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>81</strong></td>
+					<td>城市“螺丝钉”：时不我待争朝夕 在持守中建设美好城市</td>
+					<td>杨心怡</td>
+					<td><a href="http://js.cri.cn/20200429/b15ed419-3c60-a67c-23bf-888d58b786e1.html" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>82</strong></td>
+					<td>进化古生物学重大突破 | 西北大学80后女科学家Science发文：发现寒武纪“化石宝库”</td>
+					<td>李琛</td>
+					<td><a href="https://mp.weixin.qq.com/s/aumrl9uFXGEf3qzklPMk7A" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>83</strong></td>
+					<td>今天，运20歼20直20写给2020的信寄出了</td>
+					<td>吴基伟</td>
+					<td><a href="https://xhpfmapi.zhongguowangshi.com/vh512/share/6711667?isview=1&homeshow=1&newstype=1001" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>84</strong></td>
+					<td>多国驻华大使谈扶贫：中国70年最了不起的成就 </td>
+					<td>常璐静</td>
+					<td><a href="http://ydyl.china.com.cn/2019-07/27/content_75038173.htm" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>85</strong></td>
+					<td>面对“芯片之问”，任正非底气何来？</td>
+					<td>王法治</td>
+					<td><a href="http://opinion.haiwainet.cn/n/2019/0521/c353596-31561171.html" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>86</strong></td>
+					<td>1999，正常</td>
+					<td>杨成</td>
+					<td><a href="https://mp.weixin.qq.com/s?__biz=MjM5Njc4ODY1MQ==&mid=2651916988&idx=1&sn=55fb8bc7efae33206b159374f970cc61&chksm=bd064a788a71c36eb343efc2d8708a3aba67c879b0a8808b7d4fc9399e1a358399a9eb51e478&mpshare=1&scene=1&srcid=04260KWQlMGAxAhBYuruqxhy&sharer_sharetime=1587892110150&sharer_shareid=0c00864be28d0b1197395f9827f92bfa&exportkey=AfyIgTkjVWNqXiRUxjETXcw%3D&pass_ticket=zt8aGZR0RZTSA12v%2FrVAKf8Gqoup%2Fw0fHHeKRzFy6Zg%3D#rd" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>87</strong></td>
+					<td>疫情之下，为什么对打赢脱贫攻坚战有信心？</td>
+					<td>武晓娟</td>
+					<td><a href="http://views.ce.cn/view/ent/202003/04/t20200304_34394037.shtml" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>88</strong></td>
+					<td>奋战大凉山 书写扶贫故事</td>
+					<td>罗凤</td>
+					<td><a href="https://country.scol.com.cn/shtml/scncrb/20190821/69347.shtml" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>89</strong></td>
+					<td>小女孩的高山网课“教室”：家里信号不稳，父亲搭棚生火陪读 结局感人：三大运营商都来了</td>
+					<td>夏祥洲</td>
+					<td><a href="https://wap.cqcb.com/shangyou_news/NewsDetail?classId=2704&newsId=2232908&staticUrl=https%3A%2F%2Ft.cqcb.com%2F1tF1l" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>90</strong></td>
+					<td>当年睡猪圈捡垃圾背着疯娘求学的孩子，如今成了副校长……</td>
+					<td>李婧  刘鹏</td>
+					<td><a href="https://mp.weixin.qq.com/s/Kfp6G_2FCDkFMpgMVBzLFA" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>91</strong></td>
+					<td>火车“慢”下来 小康“快”起来</td>
+					<td>黄琦</td>
+					<td><a href="http://opinion.gxnews.com.cn/tbgz/hypl/article.php?id=11977" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>92</strong></td>
+					<td>初心不改学习“黄文秀”精神</td>
+					<td>罗培杰</td>
+					<td><a href="http://tougao.12371.cn/gaojian.php?tid=2441473" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>93</strong></td>
+					<td>【聚焦】奉新88岁老兵陈光长的初心：军魂永存 心跟党走</td>
+					<td>徐祖鉴</td>
+					<td><a href="https://mp.weixin.qq.com/s/0B45GlSE3RUOEUH3wSHnvg" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>94</strong></td>
+					<td>疫情之下的税务“她”力量</td>
+					<td>国家税务总局新媒体编辑部</td>
+					<td><a href="https://mp.weixin.qq.com/s/wPWbVKIpFW-ELAizH9qPoQ" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>95</strong></td>
+					<td>赵立坚把舆论战火引向美国后院产生奇效，白宫终于“改口了”</td>
+					<td>王德华</td>
+					<td><a href="https://www.toutiao.com/i6808306986308862467/" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>96</strong></td>
+					<td>百评长卷丨海南抗疫最强音！</td>
+					<td>海南南海网传媒股份有限公司</td>
+					<td><a href="http://www.hinews.cn/news/system/2020/03/22/032307894.shtml" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>97</strong></td>
+					<td>战“疫”80后：从“春天”走来的孩子长大了</td>
+					<td>李明</td>
+					<td><a href="http://news.sdchina.com/show/4499318.html" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>98</strong></td>
+					<td>抗疫正紧 岂容邪教撒野</td>
+					<td>周学胜</td>
+					<td><a href="https://mp.weixin.qq.com/s?__biz=MzI0Mjg4NjYzOA==&mid=2247517102&idx=1&sn=7ed0e507d61117b793cc4b8d674ff9f9&chksm=e977b12fde003839799ce1398426195e95cad1883abe876cddcc9d094f850d146f56e6befd20&t" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>99</strong></td>
+					<td>原创|苏工网语：传递“希望”的“90后”女校长！让榜样力量成为新时代的风尚~</td>
+					<td>蔡银</td>
+					<td><a href="https://mp.weixin.qq.com/s?__biz=MzU2Mjg0MzE3Mw==&mid=2247488746&idx=1&sn=5c39bf9db3bc89f6257501404aa22fe7&chksm=fc620fa0cb1586b6cb607888f71b793cd201ed15d4341c2811ae432ac52bf8c5257bbe02fa4d&token=352694393&lang=zh_CN#rd" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr><tr>
+					<td><strong>100</strong></td>
+					<td>央视报道的那个抱着女儿送外卖的小哥现在怎么样了？</td>
+					<td>蒋琇</td>
+					<td><a href="https://mp.weixin.qq.com/s/LnJsvz6EfyKvn1b7tjLttA" target="_blank"><img src="//himg2.huanqiu.com/statics/www/hqspecial/dist/wgyb/images/link.gif" alt></a></td>
+				</tr>
+				<tr>
+
+				</tr></tbody></table>
+
+		</div>
+	</div>
+	<center><div style="margin-top: 50px">
+		<img src="/img/mianze.png">
+	</div></center>
+	<div class="cl"></div>
+	</center>
+</div>
+<center><div class="bxtext">
+	<p>1.所有作品须为本单位（本人）原创，不能存在任何侵犯第三方权利的内容，不能违反法律法规的规定。如果被选中专题活动作品刊登在"百项网络正能量专题活动"专题及其他传播平台中，产生任何纠纷，须由推荐单位（或推荐人）承担责任。如给本网站造成任何损失，须由推荐单位（或推荐人）向本网站进行赔偿。 <br/>
+
+		2.所有参评作品授权中国青年网，均可在"百项网络正能量专题活动"专题平台及其他传播平台上发布，且授权中国青年网有转授权的权利。<br/>
+
+		3.中国互联网发展基金会、中国青年网在法律范围内保留对该活动的解释权。<br/>
+		4.入选“百项网络正能量专题活动”作品排名不分先后。<br/>
+	</p>
+</div></center>
+</body>
+
+<script src="/layuiadmin/layui/layui.js"></script>
+
+<script type="text/javascript" src="/js/jquery-1.11.3.js"></script>
+<script src="/layuiadmin/layui/layui.js"></script>
+<script type="text/javascript" src="/js/reinitIframe.js" charset="utf-8"></script>
+<script type="text/javascript">
+	$(parent.window).scroll(function(){
+		$('#box').css({
+			top : $(parent.window).scrollTop()
+		});
+	});
+</script>
+<script>
+	document.getElementById("myFrame1").style.fontWeight = "bold";
+	document.getElementById("myFrame1").style.fontSize = "xx-large";
+	document.getElementById("myFrame1").style.fontFamily = "微软雅黑";
+	document.getElementById("myFrame1").style.marginLeft = "450px";
+	document.getElementById("myFrame2").style.fontWeight = "bold";
+	document.getElementById("myFrame2").style.fontSize = "xx-large"
+	document.getElementById("myFrame2").style.fontFamily = "微软雅黑";
+	document.getElementById("myFrame3").style.fontWeight = "bold";
+	document.getElementById("myFrame3").style.fontSize = "xx-large"
+	document.getElementById("myFrame3").style.fontFamily = "微软雅黑";
+	document.getElementById("nameChange").style.fontWeight = "bold";
+	document.getElementById("nameChange").style.fontSize = "xx-large"
+	document.getElementById("nameChange").style.fontFamily = "微软雅黑";
+	function toHome() {
+		var frame = document.getElementById("myFrame");
+		frame.src = '/home'
+	}
+
+	function toDeclare() {
+		var frame = document.getElementById("myFrame");
+		frame.src = '/declare'
+	}
+
+	function toUserRecord() {
+		var frame = document.getElementById("myFrame");
+		frame.src = '/adminSystem'
+	}
+	// $(document).ready(function() {
+	// 	console.log("进入页面")
+	//
+	// 	var localTest = layui.sessionData('test');
+	// 	var name = localTest.name;
+	// 	//没有用户信息则返回登录界面
+	// 	if(typeof(name) == "undefined"){
+	// 		window.location.href = "/";
+	// 		return;
+	// 	}
+	// 	console.log("持久存储" + name);
+	//
+	// 	var nameChange = document.getElementById("nameChange");
+	// 	// nameChange.innerHTML = "改变";
+	// 	nameChange.innerHTML = name;
+	//
+	// });
+
+
+	layui.config({
+		base: '../../layuiadmin/' //静态资源所在路径
+	}).extend({
+		index: 'lib/index' //主入口模块
+	}).use(['index', 'user','layer'], function(){
+
+	});
+
+
+</script>
+</html>

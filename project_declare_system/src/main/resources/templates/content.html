@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>流程进度条</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/css/daohang.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <style type="text/css">
+        .div_home {
+            width: 100%;
+            height: 100%;
+            background: white;
+        }
+        .div_button {
+            width: 100%;
+            background: rgb(255, 255, 255);
+            text-align: center;
+        }
+        :root {
+            --progress_div-height: 100px;
+            --progress_div-width: 100%;
+            --progress_div-background: rgb(255, 255, 255);
+
+            --progress_line-top: 50px;
+            --progress_line-height: 4px;
+
+            --progress_node-height: 20px;
+            --progress_node-width: 20px;
+            --progress_node-top: -8px;
+            --progress_node-lineHeight: 20px;
+
+            --progress_text-heigth: 20px;
+            --progress_text-width: 120px;
+            --progress_text-top: -30px;
+
+            --progress_color-yes: rgb(255, 0, 0);
+            --progress_color-no: rgba(213, 213, 213, 1);
+        }
+        .progress_div {
+            height: var(--progress_div-height);
+            width: var(--progress_div-width);
+            background: var(--progress_div-background);
+            text-align: center;
+            margin: auto 0;
+        }
+        /*灰条样式*/
+        .progress_line_no {
+            position: relative;
+            top: var(--progress_line-top);
+            height: var(--progress_line-height);
+            background: var(--progress_color-no);
+        }
+        /*红条样式*/
+        .progress_line_yes {
+            height: var(--progress_line-height);
+            background: var(--progress_color-yes);
+        }
+        /*未激活节点样式*/
+        .progress_node_no {
+            position: absolute;
+            border-radius: 100%;
+            width: var(--progress_node-width);
+            height: var(--progress_node-height);
+            top: var(--progress_node-top);
+            line-height: var(--progress_node-lineHeight);
+            background: var(--progress_color-no);
+            color: var(--progress_color-no);
+        }
+        /*已激活节点样式*/
+        .progress_node_yes {
+            position: absolute;
+            border-radius: 100%;
+            width: var(--progress_node-width);
+            height: var(--progress_node-height);
+            top: var(--progress_node-top);
+            line-height: var(--progress_node-lineHeight);
+            background: var(--progress_color-yes);
+            color: var(--progress_color-yes);
+        }
+        /*节点文字*/
+        .progress_text {
+            font-family: 微软雅黑;
+            font-weight: bold;
+            font-size: x-large;
+            position: absolute;
+            vertical-align: middle;
+            text-align: center;
+            width: var(--progress_text-width);
+            height: var(--progress_text-heigth);
+            top: var(--progress_text-top);
+        }
+        /*当前激活节点标记*/
+        .progress_node_currentActive {
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="layui-layout layui-layout-admin" style="margin-top: 130px">
+    <div class="div_home">
+        <div class="progress_div">
+            <div class="progress_line_no">
+                <div class="progress_line_yes">
+                    <div>
+                        <div class="progress_text">1.作者信息</div>
+                    </div>
+                    <div>
+                        <div class="progress_text">2.作品信息</div>
+                    </div>
+                    <div>
+                        <div class="progress_text">3.身份证</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <iframe src="/authorImf" style="width: 100%" frameborder="0" scrolling="no" id="secFrame" name="secFrame" onload="this.height=100"></iframe>
+
+    <div class="progress_div">
+        <div class="div_button">
+            <input type="button" id="last" class="layui-btn" style="display: none" onclick="prePage();" value="上一步">
+            <!--                <input type="button" id="next" class="layui-btn"  lay-submit lay-filter="LAY-user-modify-submit" onclick="skipNode(1);nextPage();" value="下一步">-->
+            <input type="button" id="next" class="layui-btn"  lay-submit lay-filter="LAY-user-a-submit" onclick="submitAuthorInfo();" value="下一步">
+            <input type="button" id="sub" class="layui-btn" style="display: none" lay-submit lay-filter="LAY-user-a-submit" onclick="submitForm()" value="提交">
+            <a href="/adminSystem" id="saveButton" class="layui-btn" style="display: none">保存</a>
+        </div>
+    </div>
+
+</div>
+
+<script src="/layuiadmin/layui/layui.js"></script>
+<script type="text/javascript" src="/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+    //页面自适应实现
+    function reinitIframe(){
+        var iframe = document.getElementById("secFrame");
+        try{
+            var bHeight = iframe.contentWindow.document.body.scrollHeight;
+            var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+            var height = Math.max(bHeight, dHeight);
+            iframe.height = height ;
+            // console.log(height);
+        }catch (ex){}
+    }
+    window.setInterval("reinitIframe()", 200);
+    $(function () {
+        //传入灰条长度,传入最后一个激活节点下标
+        loadProgress(1000, 0);
+    });
+
+    //上一步type=-1,下一步type=1
+    function skipNode(type) {
+        var currentNum = 0;
+        var countNum = $('.progress_line_no > .progress_line_yes > div').length;
+        //获取当前激活节点的下标
+        $('.progress_line_no > .progress_line_yes > div').each(function (i, data) {
+            if ($(data).hasClass('progress_node_currentActive') === true) {
+                currentNum = i;
+            }
+        });
+        //当前为first,上一步无效;当前为last,下一步无效
+        if ((type === -1 && currentNum === 0) || (type === 1 && currentNum === countNum - 1)) {
+            return;
+        }
+        //重新设置激活节点标记
+        $('.progress_line_no > .progress_line_yes > div').each(function (i, data) {
+            $(data).removeClass();
+            if (type === -1 && currentNum - 1 === i) {
+                $(data).addClass('progress_node_currentActive');
+            }
+            if (type === 1 && currentNum + 1 === i) {
+                $(data).addClass('progress_node_currentActive');
+            }
+        });
+        //重新载入流程进度条样式(传入原进度条长度)
+        loadProgress($('.progress_line_no').width());
+        //TODO 如果传送成功
+
+    }
+
+    //加载流程进度条,inLineWidth进度条长度,inCurrentNum最后一个激活节点下标(从0开始到length-1)
+    function loadProgress(inLineWidth, inCurrentNum) {
+        var countNum = $('.progress_line_no > .progress_line_yes > div').length;//总节点数
+        var currentNum;//当前激活节点下标
+
+        //当前激活节点优先级:loadProgress()方法传入为最高级别,其次是div上class="progress_node_currentActive",最后默认0
+        if (inCurrentNum !== undefined && inCurrentNum > -1 && inCurrentNum < countNum) {
+            //传入的节点正确取传入的节点为当前激活节点
+            currentNum = inCurrentNum;
+        } else {
+            //存入的节点不正确,根据节点上的progress_node_currentActive设置当前激活节点
+            $('.progress_line_no > .progress_line_yes > div').each(function (i, data) {
+                if ($(data).hasClass('progress_node_currentActive') === true) {
+                    currentNum = i;
+                }
+            });
+        }
+        if (currentNum === undefined) {
+            //未传入节点或传入的节点不正确 且div上没发现progress_node_currentActive标识,设置当前激活节点为0
+            currentNum = 0;
+        }
+
+        var line_width_no = inLineWidth;//灰条长度
+        var line_width_yes;//蓝条长度
+        var node_distance = line_width_no / (countNum - 1);//两点间距
+        var node_mid_distance = node_distance / 2;//两点中距(间距/2)
+
+        $('.progress_line_no').width(line_width_no + 'px');//设置灰条长度
+        $('.progress_line_no').css('left', ($('.progress_line_no').parent().width() - line_width_no) / 2 + 'px');//设置灰条相对于父级div居中偏移
+
+        //设置节点和文字
+        $('.progress_line_no > .progress_line_yes > div').each(function (i, data) {
+            $(data).removeClass();//移除所有样式
+            //设置当前激活节点为progress_node_currentActive
+            if (currentNum === i) {
+                $(data).addClass('progress_node_currentActive');
+            }
+            if (i === 0) {
+                //设置first节点
+                $(data).addClass('progress_node_yes').css('left', i * node_distance - ($(data).width() / 2) + 'px');
+            } else if (i <= currentNum) {
+                //设置激活节点
+                $(data).addClass('progress_node_yes').css('left', i * node_distance - ($(data).width() / 2) + 'px');
+            } else {
+                //设置未激活节点
+                $(data).addClass('progress_node_no').css('left', i * node_distance - ($(data).width() / 2) + 'px');
+            }
+            //设置文字偏移位置
+            $(data).children().css('left', -($(data).children().width() / 2) + 10 + 'px');
+        });
+
+        //计算红条长度
+        line_width_yes = line_width_no * currentNum / (countNum - 1);
+
+        //设置红条长度
+        $('.progress_line_yes').width(line_width_yes + 'px');
+    }
+
+    //jump
+    var pageNumber = 0;
+    var pageUrl = ['/authorImf','/workImf','/fileUpload'];
+    function nextPage() {
+        //链接到下个界面
+        var frame = document.getElementById("secFrame");
+        console.log("传送-下一个页面")
+        pageNumber++;
+        console.log(pageNumber)
+        frame.src = pageUrl[pageNumber];
+
+        if(pageNumber > 0){
+            var last = document.getElementById("last");
+            last.style = "";
+        }
+        if(pageNumber >= 2 ){
+            var next = document.getElementById("next");
+            next.style = "display:none";
+
+            var sub = document.getElementById("sub");
+            sub.style = "";
+
+            var sub = document.getElementById("saveButton");
+            sub.style = "";
+        }
+
+    }
+
+    function prePage() {
+        var frame = document.getElementById("secFrame");
+        console.log("传送-上一个页面")
+        pageNumber--;
+        console.log(pageNumber);
+        frame.src = pageUrl[pageNumber];
+
+        if(pageNumber <= 0){
+            var last = document.getElementById("last");
+            last.style = "display:none";
+        }
+        if(pageNumber < 2 ){
+            var next = document.getElementById("next");
+            next.style = "";
+            var sub = document.getElementById("sub");
+            sub.style = "display:none";
+            var sub = document.getElementById("saveButton");
+            sub.style = "";
+        }
+    }
+
+    function submitAuthorInfo() {
+        var iframe = window.document.getElementById("secFrame");
+        iframe.contentWindow.submitInfo();
+    }
+
+    function submitForm() {
+        var localTest = layui.sessionData('test');
+        var formId = localTest.formId;
+        console.log("formId"+formId)
+
+        $.ajax({
+            type: 'GET',
+            // url: '/author/submit/id?=' + formId,
+            url: '/author/submit',
+            dataType: "JSON",
+            data:{
+                "id":formId
+            },
+            contentType: "application/json",
+            success: function (res) {
+                console.log("后端数据——")
+                console.log(res)
+                window.location.href = '/adminSystem'
+            },
+            error:function(reason){
+                console.log("错误信息")
+                console.log(reason);
+            }
+        })
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+
+
+<!--<div  id="haha" hidden>-->
+<!--<form>-->
+
+<!--</form>-->
+
+
+<script src="/layuiadmin/layui/layui.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+
+    layui.use('form', function(){
+        var form = layui.form;
+
+        //监听提交
+        form.on('submit(formDemo)', function(obj){
+            layer.msg(JSON.stringify(obj.field));
+            console.log(obj.field)
+            return false;
+        });
+    });
+</script>
+
+</body>
+</html>

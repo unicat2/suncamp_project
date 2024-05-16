@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatisplus.mapper.AuthorMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.mybatisplus.model.domain.Author">
+        <id column="id" property="id" />
+        <result column="form_type" property="formType" />
+        <result column="writer_type" property="writerType" />
+        <result column="writer_phone_number" property="writerPhoneNumber" />
+        <result column="name" property="name" />
+        <result column="person_id" property="personId" />
+        <result column="sex" property="sex" />
+        <result column="phone" property="phone" />
+        <result column="email" property="email" />
+        <result column="rec_org" property="recOrg" />
+        <result column="work_place" property="workPlace" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="area" property="area" />
+        <result column="work_type" property="workType" />
+        <result column="work_province" property="province" />
+        <result column="work_city" property="city" />
+        <result column="work_area" property="area" />
+        <result column="asso_detail_place" property="assoDetailPlace" />
+        <result column="sec_phone" property="secPhone" />
+        <result column="deleted" property="deleted" />
+        <result column="commit_state" property="commitState"/>
+<!--        <result column="create_time property="createTime" />-->
+<!--        <result column="update_time" property="updateTime" />-->
+    </resultMap>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="QueryMap" extends="BaseResultMap" type="com.example.mybatisplus.model.domain.Author">
+        <association property="works" javaType="com.example.mybatisplus.model.domain.Works">
+            <id column="id" property="id" />
+<!--            <result column="form_type" property="formType" />-->
+            <result column="type" property="type" />
+            <result column="title" property="title" />
+            <result column="link" property="link" />
+            <result column="platform" property="platform" />
+            <result column="author_introduce" property="authorIntroduce" />
+            <result column="work_introduce" property="workIntroduce" />
+            <result column="social_result" property="socialResult" />
+            <result column="work_view" property="workView" />
+        </association>
+    </resultMap>
+
+    <select id="myQuery" resultMap="QueryMap">
+        select a.id as id,a.form_type as form_type,writer_type,title,commit_state from author a join works w on a.id = w.id
+        where deleted = 1
+    </select>
+
+    <select id="mySecQuery" resultMap="QueryMap">
+        select a.id as id,a.form_type as form_type,writer_type,title,commit_state
+        from author a join works w on a.id = w.id
+        where writer_phone_number = #{writerPhoneNumber} and deleted = 1
+    </select>
+</mapper>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作品信息</title>
+    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+
+<form class="layui-form" action="" onsubmit="submitFunction()" style="margin-left: 300px;margin-top: 20px" lay-filter="works">
+
+    <div class="layui-form-item">
+        <!--    推荐类别-->
+        <label class="layui-form-label">推荐类别</label>
+        <div class="layui-input-inline">
+            <select name="interest" lay-filter="aihao" id="type">
+                <option value=""></option>
+                <option value="网络评论">网络评论</option>
+                <option value="网络报道">网络报道</option>
+                <option value="网络纪实">网络纪实</option>
+                <option value="网言网语">网言网语</option>
+                <option value="其他">其他</option>
+            </select>
+        </div>
+        <!--    作品标题-->
+        <label class="layui-form-label">作品标题</label>
+        <div class="layui-input-inline">
+            <input type="text" name="title" lay-verify="required" lay-reqtext="姓名是必填项，岂能为空？" placeholder="请输入作品标题"
+                   autocomplete="off" class="layui-input"
+                   >
+        </div>
+    </div>
+
+    <!--    作品链接-->
+    <div class="layui-form" style="margin-top: 10px">
+        <label class="layui-form-label">作品链接</label>
+        <div class="layui-input-inline">
+            <input type="url" name="link" lay-verify="required" placeholder="请输入作品链接"
+                   autocomplete="off" class="layui-input"
+                   >
+        </div>
+    </div>
+
+    <!--    首发平台-->
+    <div class="layui-form" style="margin-top: 10px">
+        <label class="layui-form-label">首发平台</label>
+        <div class="layui-input-inline">
+            <input type="text" name="platform" lay-verify="required" lay-reqtext="请输入首发平台名" placeholder="请输入首发平台具体名称"
+                   autocomplete="off" class="layui-input"
+                   >
+        </div>
+    </div>
+
+<!--    作者简介-->
+    <div class="layui-form" style="margin-top: 10px;width: 800px">
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">作者简介</label>
+            <div class="layui-input-block">
+                <textarea name="authorIntroduce" placeholder="请输入作者简介" class="layui-textarea"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!--    作品简介-->
+    <div class="layui-form" style="margin-top: 10px;width: 800px">
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">作品简介</label>
+            <div class="layui-input-block">
+                <textarea name="workIntroduce" placeholder="请输入作品简介" class="layui-textarea"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!--    社会效果-->
+    <div class="layui-form" style="margin-top: 10px;width: 800px">
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">社会效果</label>
+            <div class="layui-input-block">
+                <textarea name="result" placeholder="请说明社会效果" class="layui-textarea"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button id="submitButton" class="layui-btn" lay-submit lay-filter="LAY-user-a-submit" style="display: none">立即提交</button>
+<!--            <button id="submitButton" class="layui-btn" lay-submit lay-filter="LAY-user-a-submit">立即提交</button>-->
+        </div>
+    </div>
+
+</form>
+
+<script type="text/javascript" src="/js/jquery-1.11.3.js" ></script>
+<script src="/layuiadmin/layui/layui.js"></script>
+<script src="/js/select.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    $(document).ready(function() {
+        init()
+    });
+
+    function init(){
+        var localTest = layui.sessionData('test');
+        var phoneNumber = localTest.phoneNumber;
+        var formId = localTest.formId;
+
+        layui.use(['form', 'layer'], function () {
+                var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+                var layer = layui.layer;
+                    $.ajax({
+                        url:'/works/'+formId,	//这是后端接口的url
+                        method:'get',
+                        success:function (res) {
+                            console.log("Backend")
+                            console.log(res)
+                            console.log("end")
+                            var d = res.data;
+                            var retrieveMsg = {
+                                "id":formId,
+                                "phoneNumber":phoneNumber,
+                                "type":d.interest,
+                                "title":d.title,
+                                "link":d.link,
+                                "platform":d.platform,
+                                "authorIntroduce":d.authorIntroduce,
+                                "workIntroduce":d.workIntroduce,
+                                "result":d.socialResult
+                            };
+                            form.val("works",retrieveMsg)
+                            setTimeout(() => {
+                                set_select_checked("type",d.type);
+                                form.render()
+                            },400)
+                        },
+                    })
+                }
+        )
+    }
+
+    function set_select_checked(selectId, checkValue){
+        $('select[id='+selectId+']').next().find('.layui-anim').children('dd[lay-value='+checkValue+']').click();
+    }
+
+    function submitInfo() {
+        console.log("iframe-work方法被调用");
+        document.getElementById("submitButton").click();
+    }
+
+    //提交
+    layui.use('form', function(){
+        var layer = layui.layer,
+            form = layui.form,
+            $ = layui.$;
+
+        console.log("执行form");
+
+        //监听提交
+        form.on('submit(LAY-user-a-submit)', function(data){
+            layer.msg(JSON.stringify(data.field));
+            console.log(data.field);
+            console.log("数据处理");
+
+            var localTest = layui.sessionData('test');
+            var phoneNumber = localTest.phoneNumber;
+            var formId = localTest.formId;
+
+            var d = data.field;
+            var sendMsg = {
+                "id":formId,
+                "phoneNumber":phoneNumber,
+                "type":d.interest,
+                "title":d.title,
+                "link":d.link,
+                "platform":d.platform,
+                "authorIntroduce":d.authorIntroduce,
+                "workIntroduce":d.workIntroduce,
+                "socialResult":d.result
+            };
+
+            console.log(sendMsg);
+
+            var valid = (data.elem.validity.valid)
+            console.log(valid)
+            if(valid){
+                window.parent.skipNode(1);
+                window.parent.nextPage();
+            }
+
+            var url = '/works/update';
+            $.ajax({
+                type: 'POST',
+                url: url,
+                dataType: "JSON",
+                data: JSON.stringify(sendMsg),
+                contentType: "application/json",
+                success: function (res) {
+                    console.log("后端数据——")
+                    console.log(res)
+
+                },
+                error:function(reason){
+                    console.log(reason);
+                    layer.msg('失败', {time: 1000}, function () {
+                    });
+                }
+
+            });
+
+
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

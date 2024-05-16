@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>注册</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="/layuiadmin/style/login.css" media="all">
+
+    <script type="text/javascript" src="/js/md5.js"></script>
+    <script type="text/javascript" src="/js/jquery-1.11.3.js"></script>
+
+</head>
+<body background="/img/bottom.jpg" style=" background-repeat:no-repeat ;background-size:100% 100%; background-attachment:fixed;">
+<div style="position:relative;">
+    <img src="/img/top.jpg" width="100%"  height="120" >
+    <div style="position: absolute;left:80px; top:10px; "><img src="/img/main_logo.png" width="100%"  height="100" ></div>
+    <div style="position: absolute;left:250px; top:5px; "><img src="/img/logo2.png" width="100%"  height="100" ></div>
+</div>
+
+
+<div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-register" style="display: none;">
+    <div class="layadmin-user-login-main">
+        <div class="layadmin-user-login-box layadmin-user-login-header">
+            <div class="hh1" style="margin-top: 15%">
+                <p><h2><b>注册</b></h2></p>
+                <p><h5><b>欢迎注册第六届“五个一百”申报系统！</b></h5></p>
+            </div>
+        </div>
+        <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+            <div class="layui-form-item">
+                <label class="layadmin-user-login-icon layui-icon layui-icon-cellphone" for="LAY-user-login-cellphone"></label>
+                <input type="text" name="phoneNumber" id="LAY-user-login-cellphone" lay-verify="phone" placeholder="手机" class="layui-input">
+            </div>
+            <div class="layui-form-item">
+                <label class="layadmin-user-login-icon layui-icon layui-icon-edit" for="LAY-user-login-id"></label>
+                <input type="text" name="id" id="LAY-user-login-id" lay-verify="identity" placeholder="身份证号" class="layui-input">
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-row">
+                    <div class="layui-col-xs7">
+                        <label class="layadmin-user-login-icon layui-icon layui-icon-vercode" for="LAY-user-login-vercode"></label>
+                        <input type="text" name="vercode" id="LAY-user-login-vercode" lay-verify="required" placeholder="验证码" class="layui-input">
+                    </div>
+                    <div class="layui-col-xs5">
+                        <div style="margin-left: 10px;">
+                            <img id="codeValidateImg" class="layadmin-user-login-codeimg" onClick="javascript:flushValidateCode();"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"></label>
+                <input type="password" name="password" id="LAY-user-login-password" lay-verify="pass" placeholder="密码" class="layui-input">
+            </div>
+            <div class="layui-form-item">
+                <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-repass"></label>
+                <input type="password" name="repass" id="LAY-user-login-repass" lay-verify="required" placeholder="确认密码" class="layui-input">
+            </div>
+            <div class="layui-form-item">
+                <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-nickname"></label>
+                <input type="text" name="name" id="LAY-user-login-nickname" lay-verify="nickname" placeholder="昵称" class="layui-input">
+            </div>
+            <div class="layui-form-item">
+                <button class="layui-btn layui-btn-warm layui-btn-fluid" lay-submit lay-filter="LAY-user-reg-submit">注 册</button>
+            </div>
+            <div class="layui-trans layui-form-item layadmin-user-login-other">
+                <a href="/login" class="layadmin-user-jump-change layadmin-link">登录界面</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-trans layadmin-user-login-footer">
+
+        <p>© All Rights Reserved </p>
+
+    </div>
+
+</div>
+
+<script src="/layuiadmin/layui/layui.js"></script>
+<script>
+    $(document).ready(function() {
+        console.log("进入页面")
+        flushValidateCode();//进入页面就刷新生成验证码
+    });
+    /* 刷新生成验证码 */
+    function flushValidateCode(){
+        var validateImgObject = document.getElementById("codeValidateImg");
+        validateImgObject.src = "/user/getSysManageLoginCode?time=" + new Date();
+    }
+
+    layui.config({
+        base: '/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'user'], function(){
+        var $ = layui.$
+            ,setter = layui.setter
+            ,admin = layui.admin
+            ,form = layui.form
+            ,router = layui.router();
+
+        form.render();
+
+        //提交
+        form.on('submit(LAY-user-reg-submit)', function(obj){
+            console.log(obj.field);
+
+            if (obj.field.password !== obj.field.repass){
+                layer.msg('密码不一致', {time: 1000}, function () {
+                });
+                return;
+            }
+
+            var url = "/user/checkimagecode";
+            $.get(url, {"validateCode": obj.field.vercode}, function (data) {
+                if (data !== true) {
+                    // alert("error!")
+                    flushValidateCode();
+                    layer.msg("验证码错误", {time: 1000}, function () {
+                    });
+                    return;
+                }else{
+                    console.log(hex_md5(obj.field.password))
+                    var loginUser = {
+                        phoneNumber:obj.field.phoneNumber,
+                        password:hex_md5(obj.field.password),
+                        name:obj.field.name,
+                        personId:obj.field.id
+                    };
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/user/register',
+                        dataType: "JSON",
+                        data: JSON.stringify(loginUser),
+                        contentType: "application/json",
+                        success: function (res) {
+                            console.log("后端数据——")
+                            console.log(res)
+
+                            if (res.code === 0) {
+                                layer.msg("注册成功", {time: 1000}, function () {
+                                    window.location.href = '/'
+                                });
+                            } else {
+                                layer.msg(res.message, {time: 1000}, function () {
+
+                                });
+                            }
+                        },
+                        error:function(reason){
+                            console.log("错误信息");
+                            console.log(reason);
+                            layer.msg('注册失败', {time: 1000}, function () {
+                            });
+                        }
+
+                    })
+                }
+            });
+
+
+        });
+    });
+</script>
+
+
+</body>
+</html>

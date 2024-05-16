@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatisplus.mapper.AdminMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.mybatisplus.model.domain.Admin">
+        <id column="id" property="id" />
+        <result column="loginName" property="loginName" />
+        <result column="password" property="password" />
+        <result column="lastLoginTime" property="lastLoginTime" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+
+<!--    <resultMap id="ResultWithBook" extends="BaseResultMap" type="com.example.mybatisplus.model.domain.Admin">-->
+<!--        <collection property="bookList" ofType="com.example.mybatisplus.model.domain.Book">-->
+<!--            <id column="bid" property="id" />-->
+<!--            <result column="name" property="name" />-->
+<!--            <result column="price" property="price" />-->
+<!--            <result column="author" property="author" />-->
+<!--            <result column="creatorId" property="creatorId" />-->
+<!--            <result column="remark" property="remark" />-->
+<!--        </collection>-->
+<!--    </resultMap>-->
+
+<!--    <select id="myGetById" resultMap="ResultWithBook">-->
+<!--        select *,b.id as bid from admin a left join book b on a.id = b.creatorId-->
+<!--        where a.id = #{id}-->
+<!--    </select>-->
+
+</mapper>

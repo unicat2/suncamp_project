@@ -1,0 +1,799 @@
+
+
+/* 一、开场/转场 */
+.preloader {
+	margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+  }
+  
+  .preloader .preloader-before,
+  .preloader .preloader-after {
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: rgb(51, 4, 4);
+  }
+  
+  .preloader .preloader-before {
+    top: 0;
+  }
+  
+  .preloader .preloader-after {
+    bottom: 0;
+  }
+  
+  .preloader .preloader-block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .preloader .preloader-block .title {
+    position: absolute;
+    left: 0;
+    bottom: calc(50% + 16px);
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+    font-size: 25px;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    color: #fff;
+  }
+  
+  .preloader .preloader-block .percent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    font-weight: 700;
+    letter-spacing: 8px;
+    font-size: 24vw;
+    color: rgba(252, 246, 246, 0.3);
+    z-index: 1;
+  }
+  
+  .preloader .preloader-block .loading {
+    position: absolute;
+    top: calc(50% + 16px);
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 8px;
+    color: #fff;
+    animation: blink-animation 2.2s linear infinite;
+  }
+  
+  .preloader .preloader-bar {
+    position: absolute;
+    z-index: 2;
+    top: calc(50% - 1px);
+    right: 0;
+    width: 100%;
+    height: 2px;
+    background: white;
+  }
+  
+  .preloader .preloader-bar .preloader-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: auto;
+    bottom: auto;
+    height: 100%;
+    width: 0;
+    background: #fff;
+  }
+  
+  
+  @-webkit-keyframes blink-animation {
+    0% {
+      opacity: 0;
+    }
+  }
+  
+  @-moz-keyframes blink-animation {
+    0% {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes blink-animation {
+    0% {
+      opacity: 0;
+    }
+  }
+  
+/* 党建馆 */
+
+#cont2{
+	background-color: #680b16;
+}
+#cont3{
+	
+}
+.cont {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  padding: 150px 70px;
+  padding-top: 20px;
+  background-color:#860E1C ;
+  background-image: url(assets/img/bg/纯色背景3-深色.png);
+}
+.cont__inner {
+  position: relative;
+  height: 100%;
+}
+.cont__inner:hover .el__bg:after {
+  opacity: 1;
+}
+
+.el {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 19.2%;
+  height: 100%;
+  background: #252525;
+  
+  -webkit-transition: width 0.7s, opacity 0.6s 0.7s, z-index 0s 1.3s, -webkit-transform 0.6s 0.7s;
+  transition: width 0.7s, opacity 0.6s 0.7s, z-index 0s 1.3s, -webkit-transform 0.6s 0.7s;
+  transition: transform 0.6s 0.7s, width 0.7s, opacity 0.6s 0.7s, z-index 0s 1.3s;
+  transition: transform 0.6s 0.7s, width 0.7s, opacity 0.6s 0.7s, z-index 0s 1.3s, -webkit-transform 0.6s 0.7s;
+}
+.el:not(.s--active) {
+  cursor: pointer;
+}
+.el__overflow {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+.el__inner {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  -webkit-transition: -webkit-transform 1s;
+  transition: -webkit-transform 1s;
+  transition: transform 1s;
+  transition: transform 1s, -webkit-transform 1s;
+}
+
+.dsn{
+  /* height:100vh; */
+  width: 100vw;
+  background-color: pink;
+  object-fit: cover;
+  z-index: -9999;
+}
+.cont.s--inactive .el__inner {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+.el__bg {
+  position: relative;
+  width: calc(100vw - 140px);
+  height: 100%;
+  transition: transform 0.6s 0.7s;
+}
+.el__bg:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -5%;
+  width: 100%;
+  height: 110%;
+  background-size: cover;
+  background-position: center center;
+  transition: transform 1s;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+.cont.s--inactive .el__bg:before {
+  -webkit-transform: translate3d(0, 0, 0) scale(1.2);
+          transform: translate3d(0, 0, 0) scale(1.2);
+}
+.el.s--active .el__bg:before {
+  -webkit-transition: -webkit-transform 0.8s;
+  transition: -webkit-transform 0.8s;
+  transition: transform 0.8s;
+  transition: transform 0.8s, -webkit-transform 0.8s;
+}
+.el__bg:after {
+  content: "";
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.cont.s--el-active .el__bg:after {
+  transition: opacity 0.5s 1.4s;
+  opacity: 1 !important;
+}
+.el__preview-cont {
+  z-index: 2;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  left: 8%;
+  top: 100px;
+  
+  height: 100%;
+  transition: all 0.3s 1.2s;
+}
+.cont.s--inactive .el__preview-cont {
+  opacity: 0;
+  -webkit-transform: translateY(10px);
+          transform: translateY(10px);
+}
+.cont.s--el-active .el__preview-cont {
+  opacity: 0;
+  -webkit-transform: translateY(30px);
+          transform: translateY(30px);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.el__heading {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 33px;
+}
+.el__content {
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+}
+.el.s--active .el__content {
+  z-index: 2;
+  opacity: 1;
+  pointer-events: auto;
+  -webkit-transition: all 0.5s 1.4s;
+  transition: all 0.5s 1.4s;
+}
+.el__text {
+  font-size: 40px;
+  color: #fff;
+  position: absolute;
+  left: 100px;
+  top: 300px;
+}
+.el__close-btn {
+  z-index: -1;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 60px;
+  height: 60px;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: all 0s 0.45s;
+  transition: all 0s 0.45s;
+  cursor: pointer;
+}
+.el.s--active .el__close-btn {
+  z-index: 5;
+  opacity: 1;
+  pointer-events: auto;
+  -webkit-transition: all 0s 1.4s;
+  transition: all 0s 1.4s;
+}
+.el__close-btn:before, .el__close-btn:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 8px;
+  margin-top: -4px;
+  background: #fff;
+  opacity: 0;
+  -webkit-transition: opacity 0s;
+  transition: opacity 0s;
+}
+.el.s--active .el__close-btn:before, .el.s--active .el__close-btn:after {
+  opacity: 1;
+}
+.el__close-btn:before {
+  -webkit-transform: rotate(45deg) translateX(100%);
+          transform: rotate(45deg) translateX(100%);
+}
+.el.s--active .el__close-btn:before {
+  -webkit-transition: all 0.3s 1.4s cubic-bezier(0.72, 0.09, 0.32, 1.57);
+  transition: all 0.3s 1.4s cubic-bezier(0.72, 0.09, 0.32, 1.57);
+  -webkit-transform: rotate(45deg) translateX(0);
+          transform: rotate(45deg) translateX(0);
+}
+.el__close-btn:after {
+  -webkit-transform: rotate(-45deg) translateX(100%);
+          transform: rotate(-45deg) translateX(100%);
+}
+.el.s--active .el__close-btn:after {
+  -webkit-transition: all 0.3s 1.55s cubic-bezier(0.72, 0.09, 0.32, 1.57);
+  transition: all 0.3s 1.55s cubic-bezier(0.72, 0.09, 0.32, 1.57);
+  -webkit-transform: rotate(-45deg) translateX(0);
+          transform: rotate(-45deg) translateX(0);
+}
+
+
+
+
+
+
+.el__index {
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  bottom: -40px;
+  width: 30%;
+  height: 100%;
+  min-height: 250px;
+  text-align: center;
+  font-size: 64px;
+  line-height: 1.1;
+  font-weight: bold;
+  -webkit-transition: opacity 0.3s 1.4s, -webkit-transform 0.5s;
+  transition: opacity 0.3s 1.4s, -webkit-transform 0.5s;
+  transition: transform 0.5s, opacity 0.3s 1.4s;
+  transition: transform 0.5s, opacity 0.3s 1.4s, -webkit-transform 0.5s;
+  -webkit-transform: translate3d(0, 1vw, 0);
+          transform: translate3d(0, 1vw, 0);
+}
+.el:hover .el__index {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+.cont.s--el-active .el__index {
+  -webkit-transition: opacity 0.3s, -webkit-transform 0.5s;
+  transition: opacity 0.3s, -webkit-transform 0.5s;
+  transition: transform 0.5s, opacity 0.3s;
+  transition: transform 0.5s, opacity 0.3s, -webkit-transform 0.5s;
+  opacity: 0;
+}
+
+
+.el__index-back, .el__index-front {
+  position: absolute;
+  left: 0;
+  bottom: 9px;
+  width: 100%;
+}
+.el__index-back {
+  color: rgb(68, 68, 68);
+  opacity: 0;
+  transition: opacity 0.25s 0.25s;
+}
+.el:hover .el__index-back {
+  -webkit-transition: opacity 0.25s;
+  transition: opacity 0.25s;
+  opacity: 1;
+}
+.el__index-overlay {
+  overflow: hidden;
+  position: relative;
+  -webkit-transform: translate3d(0, 200%, 0);
+          transform: translate3d(0, 100%, 0);
+  -webkit-transition: -webkit-transform 0.5s 0.1s;
+  transition: -webkit-transform 0.5s 0.1s;
+  transition: transform 0.5s 0.1s;
+  transition: transform 0.5s 0.1s, -webkit-transform 0.5s 0.1s;
+  color: transparent;
+}
+.el__index-overlay:before {
+  content: attr(data-index);
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  width: 100%;
+  height: 100%;
+  color: white;
+  transform: translate3d(0, -100%, 0);
+  transition: transform 0.5s 0.1s;
+}
+.el:hover .el__index-overlay {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+.el:hover .el__index-overlay:before {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+
+
+
+
+.el__index1 {
+  overflow: hidden;
+  position: absolute;
+  left: 80%;
+  bottom: -40px;
+  width: 20%;
+  height: 100%;
+  /* min-height: 250px; */
+  text-align: center;
+  font-size: 3em;
+  line-height: 1.1;
+  font-weight: bold;
+  -webkit-transition: opacity 0.3s 1.4s, -webkit-transform 0.5s;
+  transition: opacity 0.3s 1.4s, -webkit-transform 0.5s;
+  transition: transform 0.5s, opacity 0.3s 1.4s;
+  transition: transform 0.5s, opacity 0.3s 1.4s, -webkit-transform 0.5s;
+  -webkit-transform: translate3d(0, 1vw, 0);
+          transform: translate3d(0, 1vw, 0);
+}
+.el:hover .el__index1 {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+.cont.s--el-active .el__index1 {
+  -webkit-transition: opacity 0.3s, -webkit-transform 0.5s;
+  transition: opacity 0.3s, -webkit-transform 0.5s;
+  transition: transform 0.5s, opacity 0.3s;
+  transition: transform 0.5s, opacity 0.3s, -webkit-transform 0.5s;
+  opacity: 0;
+}
+
+
+.el__index1-back, .el__index1-front {
+  position: absolute;
+  left: 0;
+  bottom: 9px;
+  width: 100%;
+}
+.el__index1-back {
+  color: rgb(68, 68, 68);
+  opacity: 0;
+  transition: opacity 0.25s 0.25s;
+}
+.el:hover .el__index1-back {
+  -webkit-transition: opacity 0.25s;
+  transition: opacity 0.25s;
+  opacity: 1;
+}
+.el__index1-overlay {
+  overflow: hidden;
+  position: relative;
+  -webkit-transform: translate3d(0, 200%, 0);
+          transform: translate3d(0, 100%, 0);
+  -webkit-transition: -webkit-transform 0.5s 0.1s;
+  transition: -webkit-transform 0.5s 0.1s;
+  transition: transform 0.5s 0.1s;
+  transition: transform 0.5s 0.1s, -webkit-transform 0.5s 0.1s;
+  color: transparent;
+}
+.el__index1-overlay:before {
+  content: attr(data-index);
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  width: 100%;
+  height: 100%;
+  color: white;
+  transform: translate3d(0, -100%, 0);
+  transition: transform 0.5s 0.1s;
+}
+.el:hover .el__index1-overlay {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+.el:hover .el__index1-overlay:before {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+
+
+
+
+
+
+
+
+
+
+.el:nth-child(1) {
+  -webkit-transform: translate3d(0%, 0, 0);
+          transform: translate3d(0%, 0, 0);
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+}
+.cont.s--el-active .el:nth-child(1):not(.s--active) {
+  -webkit-transform: scale(0.5) translate3d(0%, 0, 0);
+          transform: scale(0.5) translate3d(0%, 0, 0);
+  opacity: 0;
+  -webkit-transition: opacity 0.95s, -webkit-transform 0.95s;
+  transition: opacity 0.95s, -webkit-transform 0.95s;
+  transition: transform 0.95s, opacity 0.95s;
+  transition: transform 0.95s, opacity 0.95s, -webkit-transform 0.95s;
+}
+.el:nth-child(1) .el__inner {
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+}
+.el:nth-child(1) .el__bg {
+  -webkit-transform: translate3d(0%, 0, 0);
+          transform: translate3d(0%, 0, 0);
+}
+.el:nth-child(1) .el__bg:before {
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+  background-image: url("assets/img/场馆照片/中国人民抗日战争.png");
+}
+.el:nth-child(2) {
+  -webkit-transform: translate3d(105.20833%, 0, 0);
+          transform: translate3d(105.20833%, 0, 0);
+  -webkit-transform-origin: 155.20833% 50%;
+          transform-origin: 155.20833% 50%;
+}
+.cont.s--el-active .el:nth-child(2):not(.s--active) {
+  -webkit-transform: scale(0.5) translate3d(105.20833%, 0, 0);
+          transform: scale(0.5) translate3d(105.20833%, 0, 0);
+  opacity: 0;
+  -webkit-transition: opacity 0.95s, -webkit-transform 0.95s;
+  transition: opacity 0.95s, -webkit-transform 0.95s;
+  transition: transform 0.95s, opacity 0.95s;
+  transition: transform 0.95s, opacity 0.95s, -webkit-transform 0.95s;
+}
+.el:nth-child(2) .el__inner {
+  -webkit-transition-delay: 0.1s;
+          transition-delay: 0.1s;
+}
+.el:nth-child(2) .el__bg {
+  -webkit-transform: translate3d(-19.2%, 0, 0);
+          transform: translate3d(-19.2%, 0, 0);
+}
+.el:nth-child(2) .el__bg:before {
+  -webkit-transition-delay: 0.1s;
+          transition-delay: 0.1s;
+  background-image: url(assets/img/场馆照片/中国人民革命军事.png);
+}
+.el:nth-child(3) {
+  -webkit-transform: translate3d(210.41667%, 0, 0);
+          transform: translate3d(210.41667%, 0, 0);
+  -webkit-transform-origin: 260.41667% 50%;
+          transform-origin: 260.41667% 50%;
+}
+.cont.s--el-active .el:nth-child(3):not(.s--active) {
+  -webkit-transform: scale(0.5) translate3d(210.41667%, 0, 0);
+          transform: scale(0.5) translate3d(210.41667%, 0, 0);
+  opacity: 0;
+  -webkit-transition: opacity 0.95s, -webkit-transform 0.95s;
+  transition: opacity 0.95s, -webkit-transform 0.95s;
+  transition: transform 0.95s, opacity 0.95s;
+  transition: transform 0.95s, opacity 0.95s, -webkit-transform 0.95s;
+}
+.el:nth-child(3) .el__inner {
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
+}
+.el:nth-child(3) .el__bg {
+  -webkit-transform: translate3d(-38.4%, 0, 0);
+          transform: translate3d(-38.4%, 0, 0);
+}
+.el:nth-child(3) .el__bg:before {
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
+  background-image: url(assets/img/场馆照片/西柏坡.png);
+}
+.el:nth-child(4) {
+  -webkit-transform: translate3d(315.625%, 0, 0);
+          transform: translate3d(315.625%, 0, 0);
+  -webkit-transform-origin: 365.625% 50%;
+          transform-origin: 365.625% 50%;
+}
+.cont.s--el-active .el:nth-child(4):not(.s--active) {
+  -webkit-transform: scale(0.5) translate3d(315.625%, 0, 0);
+          transform: scale(0.5) translate3d(315.625%, 0, 0);
+  opacity: 0;
+  -webkit-transition: opacity 0.95s, -webkit-transform 0.95s;
+  transition: opacity 0.95s, -webkit-transform 0.95s;
+  transition: transform 0.95s, opacity 0.95s;
+  transition: transform 0.95s, opacity 0.95s, -webkit-transform 0.95s;
+}
+.el:nth-child(4) .el__inner {
+  -webkit-transition-delay: 0.3s;
+          transition-delay: 0.3s;
+}
+.el:nth-child(4) .el__bg {
+  -webkit-transform: translate3d(-57.6%, 0, 0);
+          transform: translate3d(-57.6%, 0, 0);
+}
+.el:nth-child(4) .el__bg:before {
+  -webkit-transition-delay: 0.3s;
+          transition-delay: 0.3s;
+  background-image: url(assets/img/场馆照片/华北军区.png);
+}
+.el:nth-child(5) {
+  -webkit-transform: translate3d(420.83333%, 0, 0);
+          transform: translate3d(420.83333%, 0, 0);
+  -webkit-transform-origin: 470.83333% 50%;
+          transform-origin: 470.83333% 50%;
+}
+.cont.s--el-active .el:nth-child(5):not(.s--active) {
+  -webkit-transform: scale(0.5) translate3d(420.83333%, 0, 0);
+          transform: scale(0.5) translate3d(420.83333%, 0, 0);
+  opacity: 0;
+  -webkit-transition: opacity 0.95s, -webkit-transform 0.95s;
+  transition: opacity 0.95s, -webkit-transform 0.95s;
+  transition: transform 0.95s, opacity 0.95s;
+  transition: transform 0.95s, opacity 0.95s, -webkit-transform 0.95s;
+}
+.el:nth-child(5) .el__inner {
+  -webkit-transition-delay: 0.4s;
+          transition-delay: 0.4s;
+}
+.el:nth-child(5) .el__bg {
+  -webkit-transform: translate3d(-76.8%, 0, 0);
+          transform: translate3d(-76.8%, 0, 0);
+}
+.el:nth-child(5) .el__bg:before {
+  -webkit-transition-delay: 0.4s;
+          transition-delay: 0.4s;
+  background-image: url(assets/img/场馆照片/平津战役.png);
+}
+
+.part7 .el:nth-child(1) {
+  -webkit-transform: translate3d(0%, 0, 0);
+          transform: translate3d(0%, 0, 0);
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+}
+.part7.cont.s--el-active .el:nth-child(1):not(.s--active) {
+  -webkit-transform: scale(0.5) translate3d(0%, 0, 0);
+          transform: scale(0.5) translate3d(0%, 0, 0);
+  opacity: 0;
+  -webkit-transition: opacity 0.95s, -webkit-transform 0.95s;
+  transition: opacity 0.95s, -webkit-transform 0.95s;
+  transition: transform 0.95s, opacity 0.95s;
+  transition: transform 0.95s, opacity 0.95s, -webkit-transform 0.95s;
+}
+.part7 .el__inner:nth-child(1) {
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+}
+.part7.el__inner:nth-child(1) .el__bg {
+  -webkit-transform: translate3d(0%, 0, 0);
+          transform: translate3d(0%, 0, 0);
+}
+#img6:before {
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+  background-image: url(assets/img/场馆照片/八路军太行纪念馆.png);
+}
+
+.part7 .el:nth-child(1) {
+  -webkit-transform: translate3d(0%, 0, 0);
+          transform: translate3d(0%, 0, 0);
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+}
+.part7.cont.s--el-active .el:nth-child(2):not(.s--active) {
+  -webkit-transform: scale(0.5) translate3d(0%, 0, 0);
+          transform: scale(0.5) translate3d(0%, 0, 0);
+  opacity: 0;
+  -webkit-transition: opacity 0.95s, -webkit-transform 0.95s;
+  transition: opacity 0.95s, -webkit-transform 0.95s;
+  transition: transform 0.95s, opacity 0.95s;
+  transition: transform 0.95s, opacity 0.95s, -webkit-transform 0.95s;
+}
+.part7 .el__inner:nth-child(2) {
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+}
+.part7.el__inner:nth-child(2) .el__bg {
+  -webkit-transform: translate3d(0%, 0, 0);
+          transform: translate3d(0%, 0, 0);
+}
+#img7:before {
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+  background-image: url(assets/img/场馆照片/内蒙古乌兰夫.png);
+}
+#img8:before{
+	-webkit-transition-delay: 0s;
+	        transition-delay: 0s;
+	background-image: url(assets/img/场馆照片/侵华日军南京大屠杀.png);
+}
+#img9:before{
+	-webkit-transition-delay: 0s;
+	        transition-delay: 0s;
+	background-image: url(assets/img/场馆照片/瑞金中央革命根据地.png);
+}
+#img10:before{
+	-webkit-transition-delay: 0s;
+	        transition-delay: 0s;
+	background-image: url(assets/img/场馆照片/九•一八”历史博物馆.png);
+}
+#img11:before{
+	-webkit-transition-delay: 0s;
+	        transition-delay: 0s;
+	background-image: url(assets/img/场馆照片/四平战役.png);
+}
+#img12:before{
+	-webkit-transition-delay: 0s;
+	        transition-delay: 0s;
+	background-image: url(assets/img/场馆照片/侵华日军第七三一部队-2.png);
+}
+#img13:before{
+	-webkit-transition-delay: 0s;
+	        transition-delay: 0s;
+	background-image: url(assets/img/场馆照片/海军.png);
+}
+
+.el:hover .el__bg:after {
+  opacity: 0;
+}
+.el.s--active {
+  z-index: 1;
+  width: 100%;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-transition: width 0.7s 0.7s, z-index 0s, -webkit-transform 0.6s;
+  transition: width 0.7s 0.7s, z-index 0s, -webkit-transform 0.6s;
+  transition: transform 0.6s, width 0.7s 0.7s, z-index 0s;
+  transition: transform 0.6s, width 0.7s 0.7s, z-index 0s, -webkit-transform 0.6s;
+}
+.el.s--active .el__bg {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-transition: -webkit-transform 0.6s;
+  transition: -webkit-transform 0.6s;
+  transition: transform 0.6s;
+  transition: transform 0.6s, -webkit-transform 0.6s;
+}
+.el.s--active .el__bg:before {
+  -webkit-transition-delay: 0.6s;
+          transition-delay: 0.6s;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+ .s--el-active.el__index {
+  -webkit-transition: opacity 0.3s, -webkit-transform 0.5s;
+  transition: opacity 0.3s, -webkit-transform 0.5s;
+  transition: transform 0.5s, opacity 0.3s;
+  transition: transform 0.5s, opacity 0.3s, -webkit-transform 0.5s;
+  opacity: 0;
+}
+ .s--el-active.el__index1 {
+  -webkit-transition: opacity 0.3s, -webkit-transform 0.5s;
+  transition: opacity 0.3s, -webkit-transform 0.5s;
+  transition: transform 0.5s, opacity 0.3s;
+  transition: transform 0.5s, opacity 0.3s, -webkit-transform 0.5s;
+  opacity: 0;
+}
+.part7 .el,.part8 .el{
+	width:24%
+}
